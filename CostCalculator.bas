@@ -78,6 +78,12 @@ Sub CalculateCost()
     ' 列幅自動調整
     wsReport.Columns("A:D").AutoFit
 
+    ' 既存グラフを削除（再実行時の重複防止）
+    Dim co As ChartObject
+    For Each co In wsReport.ChartObjects
+        co.Delete
+    Next co
+
     ' 棒グラフ作成（品目別小計）
     Dim chartObj As ChartObject
     Dim chartRange As Range
